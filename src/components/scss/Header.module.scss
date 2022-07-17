@@ -1,0 +1,116 @@
+.home_header {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background: rgb(46, 46, 46);
+    background: radial-gradient(circle, rgba(46, 46, 46, 1) 37%, rgba(16, 16, 16, 1) 91%);
+    padding: 3em 0;
+    position: relative;
+    min-height: 600px;
+
+    #tsparticles {
+        width: 100%;
+        height: 100%;
+    }
+
+    .heading {
+        font-family: 'Montserrat', sans-serif;
+        padding: 4em 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        span {
+            color: rgba(198, 201, 216, .75);
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        h2 {
+            color: rgba(251, 251, 251, 0.75);
+            font-size: 3rem;
+            font-weight: 800;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+
+            .job {
+                height: 4rem;
+                overflow: hidden;
+            }
+
+            p {
+                color: #f9004d;
+                animation-name: change;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+}
+
+.particles-style {
+    position: relative !important
+}
+
+
+@keyframes change {
+
+    23%,
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+
+    46%,
+    25% {
+        transform: translate3d(0, -125%, 0);
+
+    }
+
+    69%,
+    50% {
+        transform: translate3d(0, -250%, 0);
+
+    }
+
+    92%,
+    75% {
+        transform: translate3d(0, -125%, 0);
+
+    }
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+
+    }
+}
+
+//1 to 2
+// 2 to 3
+// 3 to 2
+// 2 to 1
+
+/*** 
+4 is the number of animations
+
+4x + 4y = 100 (100% duration)
+
+4x + 8 = 100
+4x = 92
+x = 23
+
+// y = 2 -> Animation between two lines
+// x = 23 -> Time spent on a line
+**/
