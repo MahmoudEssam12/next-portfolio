@@ -101,7 +101,7 @@ function Projects() {
                 </picture>
               </div>
               <div className={styles.content}>
-                <h4>{project.title}</h4>
+                <h3>{project.title}</h3>
                 <p>
                   {project.details}
                 </p>

@@ -192,7 +192,7 @@ function Navbar() {
                 offset={-70}
                 onClick={linkActive}
                 duration={500}
-                className="cnav-link">{item.title}</Link>
+                className="cnav-link" href={"#" + item.url}>{item.title}</Link>
             </li>
           ))}
         </ul>
