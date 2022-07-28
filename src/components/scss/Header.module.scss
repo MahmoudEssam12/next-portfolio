@@ -31,9 +31,21 @@
             margin-bottom: 20px;
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
+        .firstLine {
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            row-gap: 0;
+
+            p,
+            h1 {
+                font-size: 3rem;
+                font-weight: 800;
+                color: #fff;
+                margin-bottom: 0.4rem;
+            }
         }
 
         h2 {

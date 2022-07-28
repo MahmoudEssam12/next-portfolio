@@ -29,7 +29,8 @@ function AboutMe() {
                   i graduated from <br /><a href="https://www.iti.gov.eg/iti/home" target="_blank" rel="noreferrer">ITI</a> - Fullstack web development using MEARN...
                   i did some projects to proof to myself before anyone that
                   i&apos;m really good in web development... so feel free
-                  to see my projects and wish me luck.
+                  to see my projects and wish me luck.<br />
+                  You can download my CV from this Link <a href="https://drive.google.com/file/d/17rwgY26tzsUkZEij2rO0dz4HSQ-ZPYAu/view?usp=sharing" target="_blank" rel="noreferrer">here</a>
                 </p>
               </section>
               <section className={styles.the_info}>

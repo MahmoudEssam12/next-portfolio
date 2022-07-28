@@ -25,7 +25,10 @@ function Header() {
       />
       <div className={styles.heading}>
         <span>Welcome to my Portfolio</span>
-        <h1>Hi, I&apos;m Mahmoud Essam</h1>
+        <div className={styles.firstLine}>
+          <p>Hi, I&apos;m</p>
+          <h1>Mahmoud Essam</h1>
+        </div>
         <h2>
           <div
             className={styles.job}
