@@ -45,6 +45,7 @@
         img {
             width: 100%;
             border-radius: 15px;
+            max-height: 504px;
         }
 
         &::after {
@@ -98,7 +99,7 @@
             font-size: 17px;
             max-height: 0;
             overflow: hidden;
-            transition: all .3s ease;
+            transition: all .6s ease;
         }
 
         a {

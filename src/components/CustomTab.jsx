@@ -34,24 +34,39 @@ function CustomTab() {
     {
       label: "Experiance",
       details: [
+        // {
+        //   title: "Front-End Developer",
+        //   subTitle: " - Internship",
+        //   snippet: "Jan 2020 - Mar 2020 internship at Ipda3 tech",
+        // },
+        // {
+        //   title: "Wordpress Develper",
+        //   subTitle: " - The Fourth Pyramid",
+        //   snippet:
+        //     "worked as a wordpress theme developer with php from Mar 2020 - May 2020",
+        // },
+        // {
+        //   title: "Front-End Developer",
+        //   subTitle: " - The Fourth Pyramid",
+        //   snippet: "worked as a frontend from Jan 2020 - Jul 2020",
+        // },
         {
-          title: "Front-End Developer",
-          subTitle: " - Internship",
-          snippet: "Jan 2020 - Mar 2020 internship at Ipda3 tech",
-        },
-        {
-          title: "Wordpress Develper",
-          subTitle: " - The Fourth Pyramid",
+          title: "Frontend Developer",
+          duration: "[Dec 2022 – Present] ",
+          subTitle: " - OnGoing Business Development ",
           snippet:
-            "worked as a wordpress theme developer with php from Mar 2020 - May 2020",
+            "Actively involved in developing and maintaining web applications using Next.js and React.js. Collaborated with cross-functional teams, implemented responsive interfaces, integrated APIs, and ensured high-quality deliverables. Continuously updated skills and provided technical guidance, contributing to the success of various web development projects.",
         },
         {
-          title: "Front-End Developer",
-          subTitle: " - The Fourth Pyramid",
-          snippet: "worked as a frontend from Jan 2020 - Jul 2020",
+          title: "Frontend Developer",
+          duration: "[Jul 2022 – Dec 2022] ",
+          subTitle: " - The Fourth Pyramid ",
+          snippet:
+            "Developing UIs & Figma designs into code using React.js, Next.js, Vue.js and Nuxt.js.	Fetching data and Consuming API’s created with PHP, Laravel with SQL and NoSQL DBs Enhancing old websites UI development and functionality",
         },
         {
           title: "Fullstack Web Developer",
+          duration: "[Dec 2021 – Apr 2022]",
           subTitle: " - ITI intensive code camp",
           snippet: "worked as a Fullstack using MEARN from Dec 2021 - Apr 2022",
         },
@@ -64,7 +79,7 @@ function CustomTab() {
           title: "ITI - Intensive Code Camp",
           subTitle: " - FullStack using Mearn",
           snippet:
-            "I spent nearly 5 months working and learning under massive stress on fullstack websites using MEARN",
+            "I spent nearly 5 months working and learning under massive Load of tasks on fullstack websites using MEARN",
         },
         {
           title: "Udacity",
@@ -80,7 +95,7 @@ function CustomTab() {
         },
         {
           title: "Faculty of commerce",
-          subTitle: "",
+          subTitle: " - Mansoura University",
           snippet:
             "I shifted my career to programming field because that's where my passion is.",
         },
@@ -124,6 +139,7 @@ function CustomTab() {
                   <li key={index}>
                     <div>
                       <strong>{item.title}</strong>
+                      <span>{item?.duration}</span>
                       <span>{item.subTitle}</span>
                     </div>
                     {item.snippet}
