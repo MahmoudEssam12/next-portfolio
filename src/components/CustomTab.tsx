@@ -2,9 +2,20 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./scss/About.module.scss";
 
+interface TabDetail {
+  title: string;
+  subTitle: string;
+  snippet: string;
+  duration?: string;
+}
+
+interface Tab {
+  label: string;
+  details: TabDetail[];
+}
+
 function CustomTab() {
-  // eslint-disable-next-line no-unused-vars
-  const [tabs, setTabs] = useState([
+  const [tabs] = useState<Tab[]>([
     {
       label: "Main skills",
       details: [
@@ -34,22 +45,6 @@ function CustomTab() {
     {
       label: "Experiance",
       details: [
-        // {
-        //   title: "Front-End Developer",
-        //   subTitle: " - Internship",
-        //   snippet: "Jan 2020 - Mar 2020 internship at Ipda3 tech",
-        // },
-        // {
-        //   title: "Wordpress Develper",
-        //   subTitle: " - The Fourth Pyramid",
-        //   snippet:
-        //     "worked as a wordpress theme developer with php from Mar 2020 - May 2020",
-        // },
-        // {
-        //   title: "Front-End Developer",
-        //   subTitle: " - The Fourth Pyramid",
-        //   snippet: "worked as a frontend from Jan 2020 - Jul 2020",
-        // },
         {
           title: "Frontend Developer",
           duration: "[Dec 2022 – Present] ",
@@ -62,13 +57,14 @@ function CustomTab() {
           duration: "[Jul 2022 – Dec 2022] ",
           subTitle: " - The Fourth Pyramid ",
           snippet:
-            "Developing UIs & Figma designs into code using React.js, Next.js, Vue.js and Nuxt.js.	Fetching data and Consuming API’s created with PHP, Laravel with SQL and NoSQL DBs Enhancing old websites UI development and functionality",
+            "Developing UIs & Figma designs into code using React.js, Next.js, Vue.js and Nuxt.js.	Fetching data and Consuming API's created with PHP, Laravel with SQL and NoSQL DBs Enhancing old websites UI development and functionality",
         },
         {
           title: "Fullstack Web Developer",
           duration: "[Dec 2021 – Apr 2022]",
           subTitle: " - ITI intensive code camp",
-          snippet: "worked as a Fullstack using MEARN from Dec 2021 - Apr 2022",
+          snippet:
+            "worked as a Fullstack using MEARN from Dec 2021 - Apr 2022",
         },
       ],
     },
@@ -102,7 +98,7 @@ function CustomTab() {
       ],
     },
   ]);
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const [selectedTab, setSelectedTab] = useState<Tab>(tabs[0]);
 
   return (
     <div>

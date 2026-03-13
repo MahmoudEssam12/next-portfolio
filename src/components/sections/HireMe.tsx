@@ -13,25 +13,40 @@ const contactSchema = z.object({
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
-function HireMe(props) {
-  const [snackbar, setSnackbar] = useState({ open: false, message: "", variant: "success" });
+type ContactFormData = z.infer<typeof contactSchema>;
+
+interface SnackbarState {
+  open: boolean;
+  message: string;
+  variant: "success" | "error";
+}
+
+function HireMe() {
+  const [snackbar, setSnackbar] = useState<SnackbarState>({
+    open: false,
+    message: "",
+    variant: "success",
+  });
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", message: "" },
   });
 
-  const showSnackbar = (message, variant = "success") => {
+  const showSnackbar = (message: string, variant: "success" | "error" = "success") => {
     setSnackbar({ open: true, message, variant });
-    setTimeout(() => setSnackbar((prev) => ({ ...prev, open: false })), 3000);
+    setTimeout(
+      () => setSnackbar((prev) => ({ ...prev, open: false })),
+      3000
+    );
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: ContactFormData) => {
     try {
       const res = await fetch("/api/send-email", {
         method: "POST",
@@ -65,7 +80,10 @@ function HireMe(props) {
                 </a>
               </p>
             </div>
-            <form style={{ padding: "2rem 0 0" }} onSubmit={handleSubmit(onSubmit)}>
+            <form
+              style={{ padding: "2rem 0 0" }}
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <div className={styles.field}>
                 <input
                   {...register("name")}
@@ -73,7 +91,9 @@ function HireMe(props) {
                   placeholder="Your Name"
                   className={errors.name ? styles.error_input : ""}
                 />
-                {errors.name && <p className={styles.error_msg}>{errors.name.message}</p>}
+                {errors.name && (
+                  <p className={styles.error_msg}>{errors.name.message}</p>
+                )}
               </div>
 
               <div className={styles.field}>
@@ -83,34 +103,52 @@ function HireMe(props) {
                   placeholder="Your Email"
                   className={errors.email ? styles.error_input : ""}
                 />
-                {errors.email && <p className={styles.error_msg}>{errors.email.message}</p>}
+                {errors.email && (
+                  <p className={styles.error_msg}>{errors.email.message}</p>
+                )}
               </div>
 
               <div className={styles.field_textarea}>
                 <textarea
                   {...register("message")}
-                  cols="30"
-                  rows="5"
+                  cols={30}
+                  rows={5}
                   placeholder="Your Message"
                   className={errors.message ? styles.error_input : ""}
                 />
-                {errors.message && <p className={styles.error_msg}>{errors.message.message}</p>}
+                {errors.message && (
+                  <p className={styles.error_msg}>{errors.message.message}</p>
+                )}
               </div>
 
               <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? <><Loader /> Sending...</> : "Submit"}
+                {isSubmitting ? (
+                  <>
+                    <Loader /> Sending...
+                  </>
+                ) : (
+                  "Submit"
+                )}
               </button>
             </form>
           </Col>
           <Col lg={6} md={12} sm={12}>
             <div className={styles.img_wrapper} data-scroll>
               <picture>
-                <img src="/images/avatar2.webp" alt="Mahmoud Essam" loading="lazy" />
+                <img
+                  src="/images/avatar2.webp"
+                  alt="Mahmoud Essam"
+                  loading="lazy"
+                />
               </picture>
             </div>
           </Col>
         </Row>
-        <SnackBar isOpen={snackbar.open} message={snackbar.message} variant={snackbar.variant} />
+        <SnackBar
+          isOpen={snackbar.open}
+          message={snackbar.message}
+          variant={snackbar.variant}
+        />
       </Container>
     </section>
   );

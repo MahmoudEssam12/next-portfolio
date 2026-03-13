@@ -1,9 +1,11 @@
-// EmailJS keys stay on the server and are never sent to the client.
-// Set these in .env.local (see .env.example).
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const EMAILJS_API = "https://api.emailjs.com/api/v1.0/email/send";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed" });
@@ -14,11 +16,13 @@ export default async function handler(req, res) {
   const userId = process.env.EMAILJS_USER_ID;
 
   if (!serviceId || !templateId || !userId) {
-    console.error("Missing EmailJS env: EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID");
+    console.error(
+      "Missing EmailJS env: EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID"
+    );
     return res.status(500).json({ error: "Email service not configured" });
   }
 
-  const { name, email, message } = req.body || {};
+  const { name, email, message } = (req.body as { name?: string; email?: string; message?: string }) || {};
   if (!name || !email || !message) {
     return res.status(400).json({ error: "Missing name, email, or message" });
   }

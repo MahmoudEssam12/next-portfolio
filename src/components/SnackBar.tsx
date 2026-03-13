@@ -2,7 +2,13 @@ import React from "react";
 import { FiCheckCircle, FiAlertCircle } from "react-icons/fi";
 import styles from "./scss/SnackBar.module.scss";
 
-function SnackBar({ isOpen, message, variant = "success" }) {
+interface SnackBarProps {
+  isOpen: boolean;
+  message: string;
+  variant?: "success" | "error";
+}
+
+function SnackBar({ isOpen, message, variant = "success" }: SnackBarProps) {
   const Icon = variant === "error" ? FiAlertCircle : FiCheckCircle;
   return (
     <div
