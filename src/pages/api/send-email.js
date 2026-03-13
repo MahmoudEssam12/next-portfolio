@@ -32,6 +32,7 @@ export default async function handler(req, res) {
         template_id: templateId,
         user_id: userId,
         template_params: { name, email, message },
+        accessToken: process.env.EMAILJS_PRIVATE_KEY,
       }),
     });
 
