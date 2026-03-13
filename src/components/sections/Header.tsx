@@ -8,7 +8,7 @@ function Header() {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async engine => {
+    initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => {
       setInit(true);
@@ -20,8 +20,8 @@ function Header() {
       {init && (
         <Particles
           id={styles.tsparticles}
-          options={particlesOptions}
-          style={{ position: "relative !important" }}
+          options={particlesOptions as Record<string, unknown>}
+          style={{ position: "relative" }}
         />
       )}
       <div className={styles.heading}>
@@ -31,16 +31,13 @@ function Header() {
           <h1>Mahmoud Essam</h1>
         </div>
         <h2>
-          <div
-            className={styles.job}
-            style={{ display: "inline-block" }}>
-            <p >
-              Front-End&nbsp;
-            </p>
+          <div className={styles.job} style={{ display: "inline-block" }}>
+            <p>Front-End&nbsp;</p>
             <p>Back-End&nbsp;</p>
             <p>FullStack&nbsp;</p>
           </div>
-          Web Developer.</h2>
+          Web Developer.
+        </h2>
       </div>
     </div>
   );

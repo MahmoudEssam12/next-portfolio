@@ -4,10 +4,18 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FaGithub } from "react-icons/fa";
 import styles from "../scss/Projects.module.scss";
+
+interface Project {
+  title: string;
+  details: string;
+  imgSrc: string;
+  url: string;
+  githubLink: string;
+}
+
 function Projects() {
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -24,7 +32,8 @@ function Projects() {
       items: 1,
     },
   };
-  let projects = [
+
+  const projects: Project[] = [
     {
       title: "La Douce",
       details:
@@ -105,6 +114,7 @@ function Projects() {
       githubLink: "https://github.com/MahmoudEssam12/instagram",
     },
   ];
+
   return (
     <section className="section" id="projects">
       <Container>
@@ -139,7 +149,11 @@ function Projects() {
                 >
                   <FaGithub />
                 </a>
-                <a href={project.url} rel="noopener noreferrer" target="_blank">
+                <a
+                  href={project.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   Visit Website
                 </a>
               </div>
