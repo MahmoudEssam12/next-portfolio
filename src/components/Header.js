@@ -1,28 +1,29 @@
-import React, { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import React, { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 import particlesOptions from "./particles-nasa.json";
 import styles from "./scss/Header.module.scss";
 
 function Header() {
-  const particlesInit = useCallback(main => {
-    loadFull(main);
-  }, [])
-  const particlesLoaded = (container) => {
+  const [init, setInit] = useState(false);
 
-  };
-
+  useEffect(() => {
+    initParticlesEngine(async engine => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
 
   return (
     <div id="home" className={styles.home_header}>
-      {/* <Particles options={particlesOptions} init={particlesInit} /> */}
-      <Particles
-        id={styles.tsparticles}
-        init={particlesInit}
-        loaded={particlesLoaded}
-        options={particlesOptions}
-        style={{ position: "relative !important" }}
-      />
+      {init && (
+        <Particles
+          id={styles.tsparticles}
+          options={particlesOptions}
+          style={{ position: "relative !important" }}
+        />
+      )}
       <div className={styles.heading}>
         <span>Welcome to my Portfolio</span>
         <div className={styles.firstLine}>
