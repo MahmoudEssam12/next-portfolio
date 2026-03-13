@@ -1,51 +1,50 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import styles from "./scss/HireMe.module.scss";
 import SnackBar from "./SnackBar";
+import Loader from "./Loader";
+
+const contactSchema = z.object({
+  name: z.string().min(3, "Name must be at least 3 characters"),
+  email: z.string().email("Please enter a valid email"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
 
 function HireMe(props) {
-  const [test, setTest] = useState(false)
-  const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    message: ""
+  const [snackbar, setSnackbar] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: "", email: "", message: "" },
   });
-  // eslint-disable-next-line no-useless-escape
-  let emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  let regex = new RegExp(emailRegex)
 
-  const handleChange = (e) => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value
-    })
+  const onSubmit = async (data) => {
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-  }
-  // onsubmit function
-  const handleSubmit = (e) => {
-    e.preventDefault();
+      if (!res.ok) throw new Error("Send failed");
 
-    if (regex.test(formValues.email) === false) alert("please enter a valid email");
-    if (formValues.name.length <= 2) alert("your name can't be 2 characters or less");
-    if (formValues.message.length <= 10) return alert("your message can't be less than 10 characters");
+      reset();
+      setSnackbar(true);
+      setTimeout(() => setSnackbar(false), 3000);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to send message. Please try again.");
+    }
+  };
 
-    fetch("/api/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValues),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Send failed");
-        setFormValues({ name: "", email: "", message: "" });
-        setTest(true);
-        setTimeout(() => setTest(false), 3000);
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Failed to send message. Please try again.");
-      })
-
-  }
   return (
     <section className={`section ${styles.hire_me}`} id="contact">
       <Container>
@@ -55,26 +54,48 @@ function HireMe(props) {
               <h2>Hire me.</h2>
               <p>
                 I am available for freelance work or full time job. Connect with
-                me via phone: <a href="tel:+2001149835766">01149835766</a> or email: <a href="mailto:dev.mahmoud.essam@gmail.com">dev.mahmoud.essam@gmail.com</a>
+                me via phone: <a href="tel:+2001149835766">01149835766</a> or
+                email:{" "}
+                <a href="mailto:dev.mahmoud.essam@gmail.com">
+                  dev.mahmoud.essam@gmail.com
+                </a>
               </p>
             </div>
-            <form style={{ padding: "2rem 0 0" }} onSubmit={handleSubmit}>
-              <input type="text" name="name" value={formValues.name} onChange={handleChange} placeholder="Your Name" required />
-              <input
-                value={formValues.email} onChange={handleChange}
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-              />
-              <textarea
-                value={formValues.message} onChange={handleChange}
-                name="message"
-                cols="30"
-                rows="5"
-                placeholder="Your Message"
-              ></textarea>
-              <button type="submit">Submit</button>
+            <form style={{ padding: "2rem 0 0" }} onSubmit={handleSubmit(onSubmit)}>
+              <div className={styles.field}>
+                <input
+                  {...register("name")}
+                  type="text"
+                  placeholder="Your Name"
+                  className={errors.name ? styles.error_input : ""}
+                />
+                {errors.name && <p className={styles.error_msg}>{errors.name.message}</p>}
+              </div>
+
+              <div className={styles.field}>
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="Your Email"
+                  className={errors.email ? styles.error_input : ""}
+                />
+                {errors.email && <p className={styles.error_msg}>{errors.email.message}</p>}
+              </div>
+
+              <div className={styles.field_textarea}>
+                <textarea
+                  {...register("message")}
+                  cols="30"
+                  rows="5"
+                  placeholder="Your Message"
+                  className={errors.message ? styles.error_input : ""}
+                />
+                {errors.message && <p className={styles.error_msg}>{errors.message.message}</p>}
+              </div>
+
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? <><Loader /> Sending...</> : "Submit"}
+              </button>
             </form>
           </Col>
           <Col lg={6} md={12} sm={12}>
@@ -85,7 +106,7 @@ function HireMe(props) {
             </div>
           </Col>
         </Row>
-        <SnackBar test={test} message={"sent successfuly"} />
+        <SnackBar test={snackbar} message={"sent successfuly"} />
       </Container>
     </section>
   );

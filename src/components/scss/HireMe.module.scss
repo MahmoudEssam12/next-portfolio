@@ -20,6 +20,14 @@
     }
 
     form {
+        .field {
+            margin-bottom: 40px;
+        }
+
+        .field_textarea {
+            margin-bottom: 20px;
+        }
+
         input {
             border: 2px solid hsla(0, 0%, 100%, .2);
             color: rgba(198, 201, 216, .75);
@@ -29,7 +37,6 @@
             border-radius: 5px;
             height: 50px;
             line-height: 46px;
-            margin-bottom: 40px;
             font-size: 15px;
             letter-spacing: .1px;
             background: transparent;
@@ -45,12 +52,21 @@
             border-radius: 5px;
             min-height: 100px;
             line-height: 46px;
-            margin-bottom: 20px;
             font-size: 15px;
             letter-spacing: .1px;
             background: transparent;
             outline: none;
             transition: all .3s ease;
+        }
+
+        .error_input {
+            border-color: #f9004d;
+        }
+
+        .error_msg {
+            color: #f9004d;
+            font-size: 13px;
+            margin-top: 6px;
         }
 
         button {
@@ -59,16 +75,29 @@
             color: #fff;
             padding: 15px 40px;
             border-radius: 6px;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 500;
             transition: all .3s cubic-bezier(.645, .045, .355, 1);
             font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            cursor: pointer;
 
             &:hover {
                 background-color: transparent;
                 color: #f9004d;
+            }
+
+            &:disabled {
+                opacity: 0.7;
+                cursor: not-allowed;
+
+                &:hover {
+                    background: #f9004d;
+                    color: #fff;
+                }
             }
         }
     }
