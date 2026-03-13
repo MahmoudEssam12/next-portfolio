@@ -14,7 +14,7 @@ const contactSchema = z.object({
 });
 
 function HireMe(props) {
-  const [snackbar, setSnackbar] = useState(false);
+  const [snackbar, setSnackbar] = useState({ open: false, message: "", variant: "success" });
 
   const {
     register,
@@ -25,6 +25,11 @@ function HireMe(props) {
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", message: "" },
   });
+
+  const showSnackbar = (message, variant = "success") => {
+    setSnackbar({ open: true, message, variant });
+    setTimeout(() => setSnackbar((prev) => ({ ...prev, open: false })), 3000);
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -37,11 +42,10 @@ function HireMe(props) {
       if (!res.ok) throw new Error("Send failed");
 
       reset();
-      setSnackbar(true);
-      setTimeout(() => setSnackbar(false), 3000);
+      showSnackbar("Sent successfully!");
     } catch (err) {
       console.error(err);
-      alert("Failed to send message. Please try again.");
+      showSnackbar("Failed to send message. Please try again.", "error");
     }
   };
 
@@ -106,7 +110,7 @@ function HireMe(props) {
             </div>
           </Col>
         </Row>
-        <SnackBar test={snackbar} message={"sent successfuly"} />
+        <SnackBar isOpen={snackbar.open} message={snackbar.message} variant={snackbar.variant} />
       </Container>
     </section>
   );
