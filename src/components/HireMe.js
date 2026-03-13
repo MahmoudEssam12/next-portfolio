@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import emailkey from "./emailkey";
-import { send } from "emailjs-com";
 import styles from "./scss/HireMe.module.scss";
 import SnackBar from "./SnackBar";
 
@@ -31,26 +29,20 @@ function HireMe(props) {
     if (formValues.name.length <= 2) alert("your name can't be 2 characters or less");
     if (formValues.message.length <= 10) return alert("your message can't be less than 10 characters");
 
-    send(
-      emailkey.SERVICE_ID,
-      emailkey.TEMPLATE_ID,
-      formValues,
-      emailkey.USER_ID
-    )
-      .then(res => {
-        console.log(res.status, res.text)
-        setFormValues({
-          name: "",
-          email: "",
-          message: ""
-        });
-        setTest(true)
-        setTimeout(() => {
-          setTest(false)
-        }, 3000)
+    fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formValues),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Send failed");
+        setFormValues({ name: "", email: "", message: "" });
+        setTest(true);
+        setTimeout(() => setTest(false), 3000);
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        console.error(err);
+        alert("Failed to send message. Please try again.");
       })
 
   }
