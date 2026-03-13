@@ -4,6 +4,9 @@ import Script from 'next/script'
 
 function MyApp({ Component, pageProps }) {
   return <>
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </Head>
     <Script 
       id='header-gtm'
       dangerouslySetInnerHTML={{__html:`
