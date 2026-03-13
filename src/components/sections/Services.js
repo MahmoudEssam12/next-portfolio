@@ -3,8 +3,8 @@ import { Container, Row } from "react-bootstrap";
 import { FaSearchengin, FaDev, FaCode } from "react-icons/fa";
 import { GoDeviceMobile } from "react-icons/go";
 import { CgPerformance, CgTapSingle } from "react-icons/cg";
-import Card from "./Card";
-import styles from "./scss/Services.module.scss";
+import Card from "../Card";
+import styles from "../scss/Services.module.scss";
 
 function Services() {
   return (

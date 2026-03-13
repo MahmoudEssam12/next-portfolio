@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import AboutMe from '../components/AboutMe'
-import Header from '../components/Header'
+import Navbar from '../components/sections/Navbar'
+import AboutMe from '../components/sections/AboutMe'
+import Header from '../components/sections/Header'
 import styles from '../styles/Home.module.css'
-import Services from '../components/Services'
-import Projects from '../components/Projects'
-import HireMe from '../components/HireMe'
+import Services from '../components/sections/Services'
+import Projects from '../components/sections/Projects'
+import HireMe from '../components/sections/HireMe'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || (typeof window !== 'undefined' ? window.location.origin : '')
 

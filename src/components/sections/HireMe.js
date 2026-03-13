@@ -3,9 +3,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import styles from "./scss/HireMe.module.scss";
-import SnackBar from "./SnackBar";
-import Loader from "./Loader";
+import styles from "../scss/HireMe.module.scss";
+import SnackBar from "../SnackBar";
+import Loader from "../Loader";
 
 const contactSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),

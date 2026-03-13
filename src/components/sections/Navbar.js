@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MenuItems } from "./MenuItems";
+import { MenuItems } from "../MenuItems";
 import { Link } from "react-scroll";
 import { gsap } from 'gsap';
-import styles from "./scss/Navbar.module.scss";
+import styles from "../scss/Navbar.module.scss";
 import {
   FaFacebookF,
   FaTwitter,

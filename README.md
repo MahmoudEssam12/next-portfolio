@@ -14,6 +14,7 @@ Live: [nextessam.vercel.app](https://nextessam.vercel.app)
 | Styling | Sass (SCSS), Bootstrap 5, React-Bootstrap |
 | Animation | Framer Motion, GSAP, react-tsparticles |
 | UI | react-icons, react-multi-carousel, react-scroll |
+| Forms | react-hook-form, Zod (validation), @hookform/resolvers |
 | Contact | EmailJS via server-side API route (`/api/send-email`) |
 | SEO | Open Graph, Twitter Cards, JSON-LD structured data, `robots.txt`, `sitemap.xml` |
 | Linting | ESLint 9 flat config (`eslint.config.mjs`) with `eslint-config-next` |
@@ -85,8 +86,9 @@ Open [http://localhost:3000](http://localhost:3000). The app uses **Fast Refresh
 │   │   └── api/
 │   │       └── send-email.js  # Server-side EmailJS proxy
 │   ├── components/
+│   │   ├── sections/    # Page-level sections (Header, Navbar, AboutMe, Services, Projects, HireMe)
 │   │   ├── scss/        # Component-scoped SCSS modules (*.module.scss)
-│   │   └── *.js         # UI components (Header, Navbar, Projects, HireMe…)
+│   │   └── *.js|*.jsx   # Shared/reusable components (Card, CustomTab, Loader, SnackBar, MenuItems)
 │   └── styles/
 │       └── globals.scss # Global styles (imported in _app.js)
 ├── .env.example         # Template for required env vars
@@ -97,7 +99,8 @@ Open [http://localhost:3000](http://localhost:3000). The app uses **Fast Refresh
 
 - **New pages**: Add a file under `src/pages/` (e.g. `src/pages/about.js` → `/about`).
 - **New API routes**: Add under `src/pages/api/` (e.g. `src/pages/api/contact.js` → `/api/contact`).
-- **New components**: Add under `src/components/`; keep component-specific styles in `src/components/scss/*.module.scss`.
+- **New sections**: Add page-level sections under `src/components/sections/`.
+- **New shared components**: Add reusable components under `src/components/`; keep component-specific styles in `src/components/scss/*.module.scss`.
 
 ---
 
