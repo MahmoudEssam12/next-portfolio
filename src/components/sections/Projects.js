@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FaGithub } from "react-icons/fa";
-import styles from "./scss/Projects.module.scss";
+import styles from "../scss/Projects.module.scss";
 function Projects() {
   const responsive = {
     superLargeDesktop: {
