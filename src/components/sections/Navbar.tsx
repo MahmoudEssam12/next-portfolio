@@ -57,6 +57,42 @@ function Navbar() {
     }
   }, [sticky]);
 
+  const wasMobile = useRef(false);
+
+  useEffect(() => {
+    wasMobile.current = window.innerWidth <= MOBILE_BREAKPOINT;
+
+    let timeoutId: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const mobile = window.innerWidth <= MOBILE_BREAKPOINT;
+        if (wasMobile.current && !mobile) {
+          menuTl.current?.kill();
+          menuTl.current = null;
+
+          const targets = [
+            navLinks.current,
+            firstLine.current,
+            secondLine.current,
+            thirdLine.current,
+          ].filter(Boolean);
+          gsap.set(targets, { clearProps: "all" });
+          gsap.set(".responsiveNavItem", { clearProps: "all" });
+
+          setOpen(false);
+        }
+        wasMobile.current = mobile;
+      }, 150);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   const isMobile = () =>
     typeof window !== "undefined" && window.innerWidth <= MOBILE_BREAKPOINT;
 
