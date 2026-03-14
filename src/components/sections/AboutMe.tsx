@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { motion } from "framer-motion";
 
 import styles from "../scss/About.module.scss";
 import CustomTab from "../CustomTab";
@@ -10,7 +11,13 @@ function AboutMe() {
       <Container>
         <Row>
           <Col lg={5} md={5}>
-            <div className={styles.img_wrapper}>
+            <motion.div
+              className={styles.img_wrapper}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               <picture>
                 <img
                   src="/images/avatar.webp"
@@ -18,16 +25,30 @@ function AboutMe() {
                   loading="lazy"
                 />
               </picture>
-            </div>
+            </motion.div>
           </Col>
           <Col lg={7} md={7}>
-            <div className={styles.info_wrapper}>
+            <motion.div
+              className={styles.info_wrapper}
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+            >
               <section className={styles.info_header}>
                 <h2>About Me</h2>
                 <p>
-                  My Name is Mahmoud, i&apos;m a Fullstack Web Developer i
-                  shifted my career from accounting to web development, i
-                  graduated from <br />
+                  I&apos;m Mahmoud, a Frontend Developer based in Cairo, Egypt
+                  with 3+ years of professional experience building web
+                  applications. I work primarily with React, Next.js, and
+                  TypeScript, and I&apos;ve also shipped production code with
+                  Vue&nbsp;3, Angular, and Node.js.
+                  <br />
+                  <br />
+                  I&apos;ve built everything from multi-vendor e-commerce
+                  platforms and freelancing marketplaces to real-time video
+                  conferencing features with Agora SDK and fullstack dashboards
+                  with Fastify &amp; Postgres. I graduated from{" "}
                   <a
                     href="https://www.iti.gov.eg/iti/home"
                     target="_blank"
@@ -35,19 +56,8 @@ function AboutMe() {
                   >
                     ITI
                   </a>{" "}
-                  - Fullstack web development using MEARN... i did some projects
-                  to proof to myself before anyone that i&apos;m really good in
-                  web development... so feel free to see my projects and wish me
-                  luck.
-                  <br />
-                  You can download my CV from this Link{" "}
-                  <a
-                    href="https://drive.google.com/file/d/1y-9_WStEGHBJEaD4n-aw5oq3FHxezxdm/view?usp=sharing"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    here
-                  </a>
+                  with a MERN Fullstack Diploma and haven&apos;t stopped
+                  learning since.
                 </p>
               </section>
               <section className={styles.the_info}>
@@ -57,7 +67,7 @@ function AboutMe() {
                   </div>
                 </div>
               </section>
-            </div>
+            </motion.div>
           </Col>
         </Row>
       </Container>

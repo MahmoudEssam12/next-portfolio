@@ -1,8 +1,27 @@
-import React, { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import particlesOptions from "./particles-nasa.json";
 import styles from "../scss/Header.module.scss";
+import HeaderParticles from "./HeaderParticles";
+import RotatingTitle from "./RotatingTitle";
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.18 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+    },
+  },
+};
 
 function Header() {
   const [init, setInit] = useState(false);
@@ -17,28 +36,22 @@ function Header() {
 
   return (
     <div id="home" className={styles.home_header}>
-      {init && (
-        <Particles
-          id={styles.tsparticles}
-          options={particlesOptions as Record<string, unknown>}
-          style={{ position: "relative" }}
-        />
-      )}
-      <div className={styles.heading}>
-        <span>Welcome to my Portfolio</span>
-        <div className={styles.firstLine}>
+      {init && <HeaderParticles />}
+      <motion.div
+        className={styles.heading}
+        variants={stagger}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.span variants={fadeUp}>Welcome to my Portfolio</motion.span>
+        <motion.div className={styles.firstLine} variants={fadeUp}>
           <p>Hi, I&apos;m</p>
           <h1>Mahmoud Essam</h1>
-        </div>
-        <h2>
-          <div className={styles.job} style={{ display: "inline-block" }}>
-            <p>Front-End&nbsp;</p>
-            <p>Back-End&nbsp;</p>
-            <p>FullStack&nbsp;</p>
-          </div>
-          Web Developer.
-        </h2>
-      </div>
+        </motion.div>
+        <motion.div variants={fadeUp}>
+          <RotatingTitle />
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

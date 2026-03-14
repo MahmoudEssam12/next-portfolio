@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -69,7 +70,13 @@ function HireMe() {
       <Container>
         <Row>
           <Col lg={6} md={12} sm={12}>
-            <div className={styles.about_info} data-scroll>
+            <motion.div
+              className={styles.about_info}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               <h2>Hire me.</h2>
               <p>
                 I am available for freelance work or full time job. Connect with
@@ -79,10 +86,14 @@ function HireMe() {
                   dev.mahmoud.essam@gmail.com
                 </a>
               </p>
-            </div>
-            <form
+            </motion.div>
+            <motion.form
               style={{ padding: "2rem 0 0" }}
               onSubmit={handleSubmit(onSubmit)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             >
               <div className={styles.field}>
                 <input
@@ -121,7 +132,12 @@ function HireMe() {
                 )}
               </div>
 
-              <button type="submit" disabled={isSubmitting}>
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
                 {isSubmitting ? (
                   <>
                     <Loader /> Sending...
@@ -129,11 +145,17 @@ function HireMe() {
                 ) : (
                   "Submit"
                 )}
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
           </Col>
           <Col lg={6} md={12} sm={12}>
-            <div className={styles.img_wrapper} data-scroll>
+            <motion.div
+              className={styles.img_wrapper}
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            >
               <picture>
                 <img
                   src="/images/avatar2.webp"
@@ -141,7 +163,7 @@ function HireMe() {
                   loading="lazy"
                 />
               </picture>
-            </div>
+            </motion.div>
           </Col>
         </Row>
         <SnackBar

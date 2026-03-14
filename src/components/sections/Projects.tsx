@@ -2,7 +2,8 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 import styles from "../scss/Projects.module.scss";
 
 interface Project {
@@ -11,155 +12,221 @@ interface Project {
   imgSrc: string;
   url: string;
   githubLink: string;
+  technologies: string[];
 }
 
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 4,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
+const projects: Project[] = [
+  {
+    title: "La Douce",
+    details:
+      "Multi-vendor e-commerce platform with product management, auth, and a full admin dashboard.",
+    imgSrc: "/images/ladouce.webp",
+    url: "https://la-doucee.com/auth/login",
+    githubLink: "#",
+    technologies: ["Next.js", "Redux", "SWR", "MUI"],
+  },
+  {
+    title: "Jobber",
+    details:
+      "Job seeker platform with integrated hiring capabilities, course marketplace, and recruiter tools.",
+    imgSrc: "/images/jobber.webp",
+    url: "https://jobber-liart.vercel.app/",
+    githubLink: "https://github.com/MahmoudEssam12/cleaning-service",
+    technologies: ["React", "Next.js", "SCSS"],
+  },
+  {
+    title: "Procleana",
+    details:
+      "Bilingual (AR/EN) cleaning service website with service booking and responsive layout.",
+    imgSrc: "/images/procleana.webp",
+    url: "https://procleana.netlify.app/",
+    githubLink: "https://github.com/MahmoudEssam12/cleaning-service",
+    technologies: ["Vue.js", "SCSS", "i18n"],
+  },
+  {
+    title: "Lego Clone",
+    details:
+      "ITI graduation project — full e-commerce with admin and shipper dashboards, auth, and cart.",
+    imgSrc: "/images/lego.webp",
+    url: "https://lego-iti.netlify.app/",
+    githubLink: "https://github.com/ma7moudemam/lego",
+    technologies: ["React", "MUI", "Express", "MongoDB"],
+  },
+  {
+    title: "IMME",
+    details:
+      "Movie discovery app (IMDB-style) using TMDB API with Redux state management and search.",
+    imgSrc: "/images/imme.webp",
+    url: "https://imme.netlify.app/",
+    githubLink: "https://github.com/MahmoudEssam12/movie-app",
+    technologies: ["React", "Redux", "TMDB API"],
+  },
+  {
+    title: "Space Tourism",
+    details:
+      "Frontend Mentor challenge built in 3 hours with vanilla JS and GSAP page transitions.",
+    imgSrc: "/images/space.webp",
+    url: "https://space-tourism99.netlify.app/",
+    githubLink: "https://github.com/MahmoudEssam12/space-tourism",
+    technologies: ["JavaScript", "GSAP", "CSS"],
+  },
+  {
+    title: "Rock Paper Scissors",
+    details:
+      "Interactive game with score tracking and animated transitions, built with vanilla JS.",
+    imgSrc: "/images/rock-paper.webp",
+    url: "https://rockpaperscissorsme.netlify.app/",
+    githubLink: "https://github.com/MahmoudEssam12/rockPaperScissors",
+    technologies: ["JavaScript", "CSS", "HTML"],
+  },
+  {
+    title: "Royalux",
+    details:
+      "Hotel landing page with custom scroll-driven animations and parallax sections.",
+    imgSrc: "/images/hotels.webp",
+    url: "https://royalux.netlify.app/",
+    githubLink: "https://github.com/MahmoudEssam12/hotels",
+    technologies: ["JavaScript", "SCSS", "HTML"],
+  },
+  {
+    title: "Netflix Clone",
+    details:
+      "Netflix landing page clone with live API data — click any movie to watch its trailer.",
+    imgSrc: "/images/netlfix.webp",
+    url: "https://netlfix-clone-36e18.web.app/",
+    githubLink: "https://github.com/MahmoudEssam12/netflix",
+    technologies: ["React", "SCSS", "TMDB API"],
+  },
+  {
+    title: "Instagram Clone",
+    details:
+      "Social platform clone with user auth, post creation, and a real-time feed using Firebase.",
+    imgSrc: "/images/insta.webp",
+    url: "https://instagram-clone-7891b.web.app/",
+    githubLink: "https://github.com/MahmoudEssam12/instagram",
+    technologies: ["React", "SCSS", "Firebase"],
+  },
+];
+
+const carouselEntrance = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+      delay: 0.2,
+    },
+  },
+};
+
 function Projects() {
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-
-  const projects: Project[] = [
-    {
-      title: "La Douce",
-      details:
-        "large-scale multi-vendor e-commerce platform using Next.js, Redux, SWR, MUI, Formik, Yup, and next-auth",
-      imgSrc: "/images/ladouce.webp",
-      url: "https://la-doucee.com/auth/login",
-      githubLink: "#",
-    },
-    {
-      title: "Jobber",
-      details:
-        "a comprehensive job seeker platform with integrated hiring capabilities and a course marketplace. under development",
-      imgSrc: "/images/jobber.webp",
-      url: "https://jobber-liart.vercel.app/",
-      githubLink: "https://github.com/MahmoudEssam12/cleaning-service",
-    },
-    {
-      title: "Procleana",
-      details:
-        "cleaning service website i used Vue.js,html,scss it's in Arabic and English",
-      imgSrc: "/images/procleana.webp",
-      url: "https://procleana.netlify.app/",
-      githubLink: "https://github.com/MahmoudEssam12/cleaning-service",
-    },
-    {
-      title: "Lego clone",
-      details:
-        "Graduation Project from ITI i made the UI , Frontend and Backend for the admin dashboard and shipper dashboard, UI for login and signup pages ... I used React.js,MUI,Express,Mongodb",
-      imgSrc: "/images/lego.webp",
-      url: "https://lego-iti.netlify.app/",
-      githubLink: "https://github.com/ma7moudemam/lego",
-    },
-    {
-      title: "IMME (I'm Mahmoud Essam)",
-      details:
-        "Movie app project like IMDB i made it to use Redux and context api using TMDB service",
-      imgSrc: "/images/imme.webp",
-      url: "https://imme.netlify.app/",
-      githubLink: "https://github.com/MahmoudEssam12/movie-app",
-    },
-    {
-      title: "Space Tourism",
-      details:
-        "3 hours challenge from front end mentor using vanilla javascript without any plugins instead of animations with gsap",
-      imgSrc: "/images/space.webp",
-      url: "https://space-tourism99.netlify.app/",
-      githubLink: "https://github.com/MahmoudEssam12/space-tourism",
-    },
-    {
-      title: "Rock,Paper,Scissors",
-      details: "Frontend mentor challenge using Vanillajs,css,html",
-      imgSrc: "/images/rock-paper.webp",
-      url: "https://rockpaperscissorsme.netlify.app/",
-      githubLink: "https://github.com/MahmoudEssam12/rockPaperScissors",
-    },
-    {
-      title: "Royalux",
-      details:
-        "Frontend template for hotel with custom animation using vanilla javascript,html,scss",
-      imgSrc: "/images/hotels.webp",
-      url: "https://royalux.netlify.app/",
-      githubLink: "https://github.com/MahmoudEssam12/hotels",
-    },
-    {
-      title: "Netflix landing page",
-      details:
-        "Netflix landing page clone using api to get data when you click on movie you can watch the trailer i used React.js,scss",
-      imgSrc: "/images/netlfix.webp",
-      url: "https://netlfix-clone-36e18.web.app/",
-      githubLink: "https://github.com/MahmoudEssam12/netflix",
-    },
-    {
-      title: "Instagram clone",
-      details:
-        "Instagram clone you can create an account and write posts it will appear to every one i used React.js,scss,firebase",
-      imgSrc: "/images/insta.webp",
-      url: "https://instagram-clone-7891b.web.app/",
-      githubLink: "https://github.com/MahmoudEssam12/instagram",
-    },
-  ];
-
   return (
     <section className="section" id="projects">
       <Container>
-        <div className="section-header">
-          <h2>My Latest Project</h2>
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <h2>Personal &amp; Side Projects</h2>
           <p>
-            My latest but not my least projects, every project i used something
-            new to create it some of them has been made with Vue.js and others
-            with React.js and some with vanilla js
+            A selection of personal projects built with React, Next.js, Vue.js
+            and vanilla JS. For professional work — including e-commerce
+            platforms, freelancing marketplaces, and real-time apps — check the
+            Projects tab in the About section above.
           </p>
-        </div>
-        <Carousel responsive={responsive}>
-          {projects.map((project, index) => (
-            <div className={styles.project_wrapper} key={index}>
-              <div className={styles.proj_bg}>
-                <picture>
-                  <img
-                    src={project.imgSrc}
-                    alt={project.title}
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
-              <div className={styles.content}>
-                <h3>{project.title}</h3>
-                <p>{project.details}</p>
-                <a
-                  href={project.githubLink}
-                  className={styles.githubLink}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  href={project.url}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Visit Website
-                </a>
-              </div>
-            </div>
-          ))}
-        </Carousel>
+        </motion.div>
+        <motion.div
+          variants={carouselEntrance}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <Carousel
+            responsive={responsive}
+            infinite
+            autoPlay
+            autoPlaySpeed={4000}
+            pauseOnHover
+            className={styles.carousel}
+          >
+            {projects.map((project) => (
+              <motion.div
+                className={styles.card}
+                key={project.title}
+                whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              >
+                <div className={styles.card_image}>
+                  <picture>
+                    <img
+                      src={project.imgSrc}
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                  </picture>
+                  <div className={styles.card_overlay}>
+                    <div className={styles.card_actions}>
+                      {project.githubLink !== "#" && (
+                        <a
+                          href={project.githubLink}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          aria-label={`${project.title} GitHub`}
+                          className={styles.action_btn}
+                        >
+                          <FaGithub />
+                        </a>
+                      )}
+                      <a
+                        href={project.url}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        aria-label={`Visit ${project.title}`}
+                        className={styles.action_btn}
+                      >
+                        <FaExternalLinkAlt />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.card_body}>
+                  <h3>{project.title}</h3>
+                  <p>{project.details}</p>
+                  <div className={styles.card_techs}>
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className={styles.card_tech}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </Carousel>
+        </motion.div>
       </Container>
     </section>
   );

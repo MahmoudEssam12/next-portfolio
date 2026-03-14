@@ -12,27 +12,36 @@ const SITE_URL =
   (typeof window !== "undefined" ? window.location.origin : "");
 
 const defaultMeta = {
-  title: "Mahmoud Essam — Frontend & Fullstack Developer",
+  title: "Mahmoud Essam — Frontend Developer | React, Next.js, TypeScript",
   description:
-    "Portfolio of Mahmoud Essam, Frontend and Fullstack JavaScript developer from Egypt. React, Next.js, Node.js projects, skills, and contact.",
+    "Portfolio of Mahmoud Essam, a Frontend Developer with 3+ years of experience building e-commerce platforms, freelancing marketplaces, and real-time apps with React, Next.js, TypeScript, Vue, and Angular.",
   image: "/images/avatar.webp",
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Mahmoud Essam Fathy Rashed",
-  jobTitle: "Frontend & Fullstack Web Developer",
+  name: "Mahmoud Essam Rashed",
+  jobTitle: "Frontend Developer",
   ...(SITE_URL && { url: SITE_URL }),
   nationality: { "@type": "Country", name: "Egypt" },
   knowsAbout: [
-    "JavaScript",
     "React",
     "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Vue.js",
+    "Angular",
+    "Redux",
+    "Tanstack React Query",
     "Node.js",
+    "Express",
+    "Fastify",
+    "PostgreSQL",
     "MongoDB",
-    "Express.js",
-    "REST API",
+    "Docker",
+    "AWS",
+    "GraphQL",
     "Frontend Development",
     "Fullstack Development",
   ],
@@ -48,7 +57,7 @@ export default function Home() {
         <meta name="description" content={defaultMeta.description} />
         <meta
           name="keywords"
-          content="Mahmoud Essam, frontend developer Egypt, fullstack developer, JavaScript, React, Next.js, Node.js, web developer portfolio"
+          content="Mahmoud Essam, frontend developer Egypt, React developer, Next.js, TypeScript, Vue.js, Angular, fullstack developer, web developer portfolio, Cairo"
         />
         {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
