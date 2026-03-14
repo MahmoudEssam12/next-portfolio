@@ -127,6 +127,19 @@ const projects: Project[] = [
   },
 ];
 
+const carouselEntrance = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+      delay: 0.2,
+    },
+  },
+};
+
 function Projects() {
   return (
     <section className="section" id="projects">
@@ -146,63 +159,74 @@ function Projects() {
             Projects tab in the About section above.
           </p>
         </motion.div>
-        <Carousel
-          responsive={responsive}
-          infinite
-          autoPlay
-          autoPlaySpeed={4000}
-          pauseOnHover
-          className={styles.carousel}
+        <motion.div
+          variants={carouselEntrance}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
         >
-          {projects.map((project) => (
-            <div className={styles.card} key={project.title}>
-              <div className={styles.card_image}>
-                <picture>
-                  <img
-                    src={project.imgSrc}
-                    alt={project.title}
-                    loading="lazy"
-                  />
-                </picture>
-                <div className={styles.card_overlay}>
-                  <div className={styles.card_actions}>
-                    {project.githubLink !== "#" && (
+          <Carousel
+            responsive={responsive}
+            infinite
+            autoPlay
+            autoPlaySpeed={4000}
+            pauseOnHover
+            className={styles.carousel}
+          >
+            {projects.map((project) => (
+              <motion.div
+                className={styles.card}
+                key={project.title}
+                whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              >
+                <div className={styles.card_image}>
+                  <picture>
+                    <img
+                      src={project.imgSrc}
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                  </picture>
+                  <div className={styles.card_overlay}>
+                    <div className={styles.card_actions}>
+                      {project.githubLink !== "#" && (
+                        <a
+                          href={project.githubLink}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          aria-label={`${project.title} GitHub`}
+                          className={styles.action_btn}
+                        >
+                          <FaGithub />
+                        </a>
+                      )}
                       <a
-                        href={project.githubLink}
+                        href={project.url}
                         rel="noopener noreferrer"
                         target="_blank"
-                        aria-label={`${project.title} GitHub`}
+                        aria-label={`Visit ${project.title}`}
                         className={styles.action_btn}
                       >
-                        <FaGithub />
+                        <FaExternalLinkAlt />
                       </a>
-                    )}
-                    <a
-                      href={project.url}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      aria-label={`Visit ${project.title}`}
-                      className={styles.action_btn}
-                    >
-                      <FaExternalLinkAlt />
-                    </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className={styles.card_body}>
-                <h3>{project.title}</h3>
-                <p>{project.details}</p>
-                <div className={styles.card_techs}>
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className={styles.card_tech}>
-                      {tech}
-                    </span>
-                  ))}
+                <div className={styles.card_body}>
+                  <h3>{project.title}</h3>
+                  <p>{project.details}</p>
+                  <div className={styles.card_techs}>
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className={styles.card_tech}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </Carousel>
+              </motion.div>
+            ))}
+          </Carousel>
+        </motion.div>
       </Container>
     </section>
   );
