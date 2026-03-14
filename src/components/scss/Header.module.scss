@@ -21,10 +21,12 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 900px;
 
         > span {
             color: rgba(198, 201, 216, .75);
-            font-size: 15px;
+            font-size: clamp(11px, 2.5vw, 15px);
             text-transform: uppercase;
             letter-spacing: 4px;
             display: block;
@@ -32,7 +34,6 @@
         }
 
         .firstLine {
-
             display: flex;
             align-items: center;
             gap: 10px;
@@ -41,7 +42,7 @@
 
             p,
             h1 {
-                font-size: 3rem;
+                font-size: clamp(1.6rem, 5.5vw, 3rem);
                 font-weight: 800;
                 color: #fff;
                 margin-bottom: 0.4rem;
@@ -50,7 +51,7 @@
 
         h2 {
             color: rgba(251, 251, 251, 0.75);
-            font-size: 3rem;
+            font-size: clamp(1.6rem, 5.5vw, 3rem);
             font-weight: 800;
             overflow: hidden;
             display: flex;
