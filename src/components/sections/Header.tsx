@@ -32,11 +32,11 @@ function Header() {
         </div>
         <h2>
           <div className={styles.job} style={{ display: "inline-block" }}>
-            <p>Front-End&nbsp;</p>
-            <p>Back-End&nbsp;</p>
-            <p>FullStack&nbsp;</p>
+            <p>Frontend&nbsp;</p>
+            <p>React &amp; Next.js&nbsp;</p>
+            <p>Fullstack&nbsp;</p>
           </div>
-          Web Developer.
+          Developer.
         </h2>
       </div>
     </div>

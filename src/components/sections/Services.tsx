@@ -11,43 +11,43 @@ function Services() {
     <section className={`section ${styles.services_section}`} id="services">
       <Container>
         <div className="section-header">
-          <h2>My Awesome Service</h2>
+          <h2>What I Do</h2>
           <p>
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have suffered alteration.
+            From pixel-perfect UIs to scalable architectures — here&apos;s what
+            I bring to every project.
           </p>
         </div>
 
         <Row>
           <Card
             icon={<FaSearchengin />}
-            header="SEO"
-            par="Search engine optimization i improve the quality and quantity of website traffic to a website or a web page from search engines."
+            header="SEO & Performance"
+            par="I optimize for search engines with semantic HTML, structured data, SSR/SSG with Next.js, and Core Web Vitals tuning to maximize discoverability."
           />
           <Card
             icon={<GoDeviceMobile />}
             header="Responsive Design"
-            par="I create web pages that look good on all devices and all screens,the web page will automatically adjust for different screen sizes."
+            par="Every interface I build is mobile-first and adapts fluidly across devices and screen sizes using modern CSS and component-driven layouts."
           />
           <Card
             icon={<FaDev />}
-            header="Website Development"
-            par="I can develope websites from range from simple single static page of plain text to complex web applications."
+            header="Web Applications"
+            par="From e-commerce platforms and freelancing marketplaces to real-time collaboration tools — I build full-featured web apps with React, Next.js, Vue, and Angular."
           />
           <Card
             icon={<FaCode />}
-            header="Clean Code"
-            par="My code is clean it can be understood easily – by everyone on the team. My code can be read by a developer working after me."
+            header="Clean & Maintainable Code"
+            par="I write well-structured, typed code with TypeScript, follow component-driven architecture, and build reusable UI libraries for long-term maintainability."
           />
           <Card
             icon={<CgPerformance />}
-            header="High Performance"
-            par="My websites performance is high .. i optimize my code and their is some techniques like lazyloading, minifying css and js files"
+            header="Performance Optimization"
+            par="Lazy loading, code splitting, caching strategies, image optimization, and efficient rendering — I ensure fast load times and smooth user experiences."
           />
           <Card
             icon={<CgTapSingle />}
-            header="RESTFull API"
-            par="I create a highly performance REST Apis using node.js with strong validations and professional authorizations."
+            header="API Integration"
+            par="I integrate REST APIs, GraphQL, payment gateways (PayPal, Paymob), real-time SDKs (Agora), and cloud services (AWS S3) into production applications."
           />
         </Row>
       </Container>

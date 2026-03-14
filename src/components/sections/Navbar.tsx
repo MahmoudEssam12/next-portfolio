@@ -200,11 +200,10 @@ function Navbar() {
   );
 
   const toggle = useCallback(() => {
-    setOpen((prev) => {
-      runMenuAnimation(!prev);
-      return !prev;
-    });
-  }, [runMenuAnimation]);
+    const nextOpen = !open;
+    setOpen(nextOpen);
+    runMenuAnimation(nextOpen);
+  }, [open, runMenuAnimation]);
 
   const handleLinkClick = useCallback(() => {
     setOpen(false);

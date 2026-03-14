@@ -119,11 +119,12 @@ function Projects() {
     <section className="section" id="projects">
       <Container>
         <div className="section-header">
-          <h2>My Latest Project</h2>
+          <h2>Personal &amp; Side Projects</h2>
           <p>
-            My latest but not my least projects, every project i used something
-            new to create it some of them has been made with Vue.js and others
-            with React.js and some with vanilla js
+            A selection of personal projects built with React, Next.js, Vue.js
+            and vanilla JS. For professional work — including e-commerce
+            platforms, freelancing marketplaces, and real-time apps — check the
+            Projects tab in the About section above.
           </p>
         </div>
         <Carousel responsive={responsive}>
