@@ -16,13 +16,14 @@ export default function Document() {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-T7XHCMKH');
         ` }} />
-
-        <Script
-          id="react-scan"
-          src="//unpkg.com/react-scan/dist/auto.global.js"
-          crossOrigin="anonymous"
-          strategy="beforeInteractive"
-        />
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            id="react-scan"
+            src="//unpkg.com/react-scan/dist/auto.global.js"
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#0a0a0a" />
         <link rel="icon" href="/favicon.ico" />
