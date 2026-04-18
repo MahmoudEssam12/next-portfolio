@@ -35,7 +35,7 @@ export default function Document() {
         />
         <meta
           name="keywords"
-          content="Mahmoud Essam, frontend developer Egypt, fullstack developer, JavaScript developer, React developer, Next.js, Node.js, MERN stack, web developer portfolio, hire developer Egypt"
+          content="Mahmoud Essam, mahmoud, mahmoud essam fathy rashed, mahmoud essam rashed, frontend developer Egypt, fullstack developer, JavaScript developer, React developer, Next.js, Node.js, MERN stack, web developer portfolio, hire developer Egypt"
         />
         <link
           rel="stylesheet"
