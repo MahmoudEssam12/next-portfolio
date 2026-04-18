@@ -113,6 +113,13 @@ const tabs: Tab[] = [
     label: "Projects",
     details: [
       {
+        title: "Tameeni Motor",
+        subTitle: " — Insurance Aggregator",
+        snippet:
+          "Contributed to building and optimizing Saudi Arabia's first and biggest motor insurance aggregator serving 8M+ users and 25,000+ daily transactions. Built multi-step quote comparison flows, responsive vehicle/driver data forms with real-time validation, and integrated insurer APIs for accurate live pricing across 23+ providers.",
+        technologies: ["React", "Next.js", "TypeScript"],
+      },
+      {
         title: "Aman Web Stores",
         duration: "Jul 2023",
         subTitle: " — E-commerce Platform",
