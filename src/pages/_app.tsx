@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 
 import "../styles/globals.scss";
 
@@ -19,7 +20,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         })(window,document,'script','dataLayer','GTM-TQ5B6443')`}
       </Script>
       <Component {...pageProps} />
-      <SpeedInsights />
+      <Analytics mode={process.env.NODE_ENV === "development" ? 'development':"production"} debug={process.env.NODE_ENV === "development"}/>
+      <SpeedInsights debug={process.env.NODE_ENV === "development"}/>
     </>
   );
 }
