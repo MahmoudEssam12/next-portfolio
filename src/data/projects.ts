@@ -12,6 +12,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "BingHub",
+    summary:
+      "SaaS restaurant management portal — multi-branch dashboards, real-time reservations, promotions, and analytics.",
+    details:
+      "Built Bing Portal, the SaaS dashboard behind BingHub, a restaurant discovery and table-booking platform. Restaurant owners create their restaurant profile, control every branch from a single screen, and add per-branch manager accounts so each manager runs their branch independently. The portal handles real-time reservation requests from the Bing consumer app, table capacity and guest flow, promotions and special offers, and analytics on peak hours, occupancy, and performance.",
+    imgSrc: "/images/binghub.png",
+    url: "https://binghub.net/for_business",
+    technologies: ["React", "TypeScript"],
+  },
+  {
     title: "Tameeni Motor",
     summary:
       "KSA's largest online motor insurance aggregator — instant policy comparison and purchase across 23+ providers.",

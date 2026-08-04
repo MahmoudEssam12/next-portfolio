@@ -1,4 +1,5 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./scss/Projects.module.scss";
@@ -10,7 +11,16 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+const emptySubscribe = () => () => {};
+
 function ProjectModal({ project, sourceRect, onClose }: ProjectModalProps) {
+  // false during SSR/hydration, true on the client — gates the document.body portal
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
   const transform = (() => {
     if (!sourceRect) return { x: 0, y: 0, scale: 0.85 };
     const modalWidth = Math.min(620, window.innerWidth - 48);
@@ -41,7 +51,9 @@ function ProjectModal({ project, sourceRect, onClose }: ProjectModalProps) {
     }
   }, [project, handleKeyDown]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {project && (
         <motion.div
@@ -155,7 +167,8 @@ function ProjectModal({ project, sourceRect, onClose }: ProjectModalProps) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 
